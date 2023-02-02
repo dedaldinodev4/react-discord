@@ -11,16 +11,12 @@ export const ServerList: React.FC = () => {
       
       <Separator />
 
+      <ServerButton avatar='https://github.com/reactjs' />
+      <ServerButton hasNotifications/>
+      <ServerButton avatar='https://github.com/vercel' mentions={3}/>
       <ServerButton />
       <ServerButton hasNotifications/>
-      <ServerButton mentions={3}/>
-      <ServerButton />
-      <ServerButton />
-      <ServerButton />
-      <ServerButton hasNotifications/>
-      <ServerButton />
-      <ServerButton />
-      <ServerButton mentions={72}/>
+      <ServerButton avatar='https://github.com/vuejs' mentions={72}/>
       <ServerButton />
       <ServerButton />
     </Container>

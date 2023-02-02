@@ -7,6 +7,7 @@ export interface Props {
   isHome?: boolean;
   hasNotifications?: boolean;
   mentions?: number;
+  avatar?: string;
 }
 
 
@@ -14,7 +15,8 @@ export const ServerButton: React.FC<Props> = ({
   selected, 
   isHome, 
   hasNotifications, 
-  mentions 
+  mentions, 
+  avatar
 }) => {
   return (
     <Button
@@ -23,7 +25,8 @@ export const ServerButton: React.FC<Props> = ({
       mentions={mentions}
       className={selected ? 'active' : ''}
     >
-      {isHome && <img src="https://avatars0.githubusercontent.com/u/49030804?s=460&u=3dbd06708f28e1132e215182f8fbd3031f5045f1&v=4" alt="Foto" />}
+      {isHome && <img src="https://github.com/discord.png" alt="Foto" />}
+      {!isHome && avatar && <img src={avatar +`.png`} alt="Foto" />}
     </Button>
   )
 }
