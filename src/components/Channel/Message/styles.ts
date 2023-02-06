@@ -6,8 +6,8 @@ export const Container = styled.div`
 
   padding: 4px 16px;
   margin-right: 4px;
+  cursor: pointer;
   
-  background-color: transparent;
 
   &.mention {
     background-color: var(--mention-message);
@@ -19,6 +19,10 @@ export const Container = styled.div`
   & + div {
     margin-top: 13px;
   }
+
+  &:hover {
+    background: rgba(255,255,255, 0.1);
+  }
   
 `;
 
@@ -27,8 +31,14 @@ export const Avatar = styled.div`
   width: 40px;
   height: 40px;
 
-  background-color: var(--secondary);
   border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  
+  > img {
+    width: 100%;
+    height: 100%;    
+  }
 
   &.bot {
     border-left: 2px solid var(--mention-detail);

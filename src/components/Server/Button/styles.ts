@@ -72,7 +72,7 @@ export const Button = styled.button<Props>`
   &:hover {
     border-radius: 16px;
     background-color: ${(props) => 
-    props.isHome ? 'var(--rocketseat)' : 'var(--discord)'};
+    props.isHome ? 'var(--primary)' : 'var(--discord)'};
   }
 
 

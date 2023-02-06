@@ -90,7 +90,13 @@ export const Avatar = styled.div`
   height: 32px;
 
   border-radius: 50%;
-  background-color: var(--primary);
+  overflow: hidden;
+
+  > img {
+    width: 100%;
+    height: 100%;    
+  }
+
 
   &.bot {
     background-color: var(--mention-detail);

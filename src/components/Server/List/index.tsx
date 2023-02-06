@@ -4,21 +4,26 @@ import { ServerButton } from '../Button';
 
 import { Container, Separator } from './styles';
 
+import { servers } from './data';
+
 export const ServerList: React.FC = () => {
   return (
     <Container>
       <ServerButton isHome />
       
       <Separator />
-
-      <ServerButton avatar='https://github.com/reactjs' />
-      <ServerButton hasNotifications/>
-      <ServerButton avatar='https://github.com/vercel' mentions={3}/>
-      <ServerButton />
-      <ServerButton hasNotifications/>
-      <ServerButton avatar='https://github.com/vuejs' mentions={72}/>
-      <ServerButton />
-      <ServerButton />
+      {
+        servers.map((server) => (
+          <ServerButton
+            title={server.title} 
+            avatar={server.avatar} 
+            hasNotifications = {server.hasNotifications} 
+            mentions={server.mentions}
+            selected={server.selected}
+            key={server.title}
+          />
+        ))
+      }
     </Container>
   )
 };

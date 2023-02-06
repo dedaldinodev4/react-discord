@@ -1,13 +1,7 @@
 import React from 'react'
+import { Form } from '../../components/Auth/Form';
 
 
-const Auth = () => {
-  return (
-    <>
-      <h1>Auth Page</h1>
-      <span>SignIn | SignUp</span>
-    </>
-  );
+export const Auth: React.FC = () => {
+  return <Form />;
 }
-
-export default Auth;

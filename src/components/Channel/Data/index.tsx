@@ -4,40 +4,36 @@ import { ChannelMessage, Mention } from '../Message';
 
 import { Container, Messages, InputWrapper, Input, InputIcon } from './styles';
 
+import { messages } from './data';
+
 export const ChannelData: React.FC = () => {
 
   return (
   <Container>
     <Messages>
       {
-        Array.from(Array(15).keys()).map((n) => 
+       messages.map((message) => 
         (
-          <ChannelMessage 
-          author="Rodrigo Gonçalves"
-          date="26/06/2020"
-          content="Falaaa galera. Esse projeto é para treinar layout com Grid e Flexbox, além de utilizar TypeScript"
+          <ChannelMessage
+            isBot = {message.isBot} 
+            author={message.author}
+            avatar= {message.avatar}
+            date={message.date}
+            key={message.author+` - ` + Date.now() + message.content}
+            content= {message.hasMention ? 
+              <>
+                <Mention>@{message.mention} </Mention>, {message.content}
+              </>
+                : message.content
+              }
           />
         ))
       }
-
-      <ChannelMessage 
-        hasMention
-        isBot
-        author="Fulano"
-        date="26/06/2020"
-        content={
-          <>
-          <Mention>@Rodrigo </Mention>, "Muito bom!"
-          </>
-        }
-      />
-
-
     </Messages>
 
     <InputWrapper>
       <Input type="text" placeholder="Conversar em #chat-livre" />
-      <InputIcon />
+      {/* <InputIcon /> */}
     </InputWrapper>
   </Container>
   )
