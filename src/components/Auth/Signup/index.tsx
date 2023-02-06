@@ -5,41 +5,56 @@ import { Container, Wrapper, Box, UseForm, InputGroup, Label,
   Input, BoxButton } from '../Form/styles';
 import { Button } from '../Button';
 import { Anchor, FormInput } from './styles';
+import { ISignUp } from '../../../dtos/user';
+import { useForm, SubmitHandler } from 'react-hook-form'
 
 export const SignUp: React.FC = () => {
   
+  const { register, handleSubmit, formState: { errors } } = useForm<ISignUp>()
+
+  const onSubmit: SubmitHandler<ISignUp> = data => console.log(data)
+
   return (
-    <>
+    
       <Wrapper>
       <Container>
         <Box>
           <h2>Criar uma conta</h2>
-          <UseForm>
+          <UseForm onSubmit={handleSubmit(onSubmit)}>
             <InputGroup>
-              <Label>Email</Label>
-              <Input required type={'email'} placeholder={''} />
+              <Label>Email {errors.email && <span> - Email is required. </span>}</Label>
+              <Input 
+                type={'email'} 
+                placeholder={''} 
+                {...register('email', { required: true})}
+              />
             </InputGroup>
             <InputGroup>
-              <Label>Nome de Usuário</Label>
-              <Input required type={'email'} placeholder={''} />
+              <Label>Nome de Usuário {errors.email && <span> - Username is required. </span>}</Label>
+              <Input 
+                type={'text'} 
+                placeholder={''}
+                {...register('name', { required: true})}
+              />
             </InputGroup>
             <InputGroup>
-              <Label>Senha</Label>
-              <Input required type={'password'} placeholder={''} />
+              <Label>Senha {errors.email && <span> - Password is required. </span>}</Label>
+              <Input 
+                type={'password'} 
+                placeholder={''} 
+                {...register('password', { required: true})}
+              />
             </InputGroup>
             <InputGroup>
-              <Label>Data de Nascimento</Label><br/>
-              <FormInput type={'day'} placeholder={'Dia'} />
-              <FormInput type={'month'} placeholder={'Mês'} />
-              <FormInput type={'year'} placeholder={'Ano'} />
+              <Label>Data de Nascimento {errors.email && <span> - dateOfBrith is required. </span>}</Label>
+              <Input 
+                type={'date'} 
+                {...register('dateOfBrith', { required: true})}
+              />
             </InputGroup>
-            <Forgot>
-              <a>Esqueceu sua senha?</a>
-            </Forgot>
+            
             <BoxButton>
-              <Link to={'/dashboard'}>
-                <Button />
-              </Link>
+              <Button type={'submit'} />
               <RegisterLabel>
                 <Anchor to={'/'}>
                   Já tem uma conta?
@@ -53,7 +68,7 @@ export const SignUp: React.FC = () => {
       </Container> 
 
     </Wrapper>
-    </>
+    
   );
 
 }

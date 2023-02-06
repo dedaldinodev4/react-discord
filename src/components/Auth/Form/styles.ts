@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -19,7 +20,7 @@ export const Box = styled.div`
   margin: 0 auto;
   border-radius: 5px;
   background-color: #121214;
-  margin-top: 32px;
+  margin-top: 5px;
 
   h2 {
     text-align: left;
@@ -35,7 +36,7 @@ export const Box = styled.div`
 
 
 export const InputGroup = styled.div`
-  margin-bottom: 12px;
+  margin-bottom: 5px;
 `;
 
 export const Input = styled.input`
@@ -58,6 +59,13 @@ export const Label = styled.label`
   font-weight: bold;
   font-size: 14px;
   color: var(--senary);
+
+  span {
+    color: var(--notification);
+    text-transform: lowercase;
+    font-size: 12px;
+    font-weight: 500;
+  }
 `;
 
 export const UseForm = styled.form`
@@ -80,10 +88,17 @@ export const BoxButton = styled.div`
 
 export const RegisterLabel = styled.div`
   margin-top: 15px;
-  color: var(--link);
-  text-decoration: none;
   a {
     color: var(--link);
+  }
+`;
+
+export const Anchor = styled(Link)`
+  color: var(--link);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--primary);
   }
 `;
 
