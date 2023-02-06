@@ -80,6 +80,8 @@ export const BoxButton = styled.div`
 
 export const RegisterLabel = styled.div`
   margin-top: 15px;
+  color: var(--link);
+  text-decoration: none;
   a {
     color: var(--link);
   }

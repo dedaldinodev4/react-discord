@@ -29,7 +29,7 @@ export const Form: React.FC = () => {
                 <Button />
               </Link>
               <RegisterLabel>
-                Precisa de uma conta? <a>Registre-se</a>
+                Precisa de uma conta? <Link to={'/register'}>Registre-se</Link>
               </RegisterLabel>
             </BoxButton>
 
