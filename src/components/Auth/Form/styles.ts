@@ -102,6 +102,16 @@ export const Anchor = styled(Link)`
   }
 `;
 
+export const ShowModal = styled.a`
+  color: var(--link);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary);
+  }
+`;
+
 
 
   

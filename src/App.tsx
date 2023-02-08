@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ModalProvider } from 'styled-react-modal'
 
 import { Home } from './pages/Home'
 import { Auth } from './pages/Auth'
@@ -12,13 +13,15 @@ function App() {
   return (
     <>
       <GlobalStyles/>
-      <BrowserRouter>
-        <Routes>
-          <Route index path='' element={<Auth />} />
-          <Route path='dashboard' element={<Home />} />
-          <Route path='register' element={<Register/>} />
-        </Routes>
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route index path='' element={<Auth />} />
+            <Route path='dashboard' element={<Home />} />
+            <Route path='register' element={<Register/>} />
+          </Routes>
+        </BrowserRouter>
+      </ModalProvider>
       
     </>
   )

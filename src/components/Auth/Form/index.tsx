@@ -1,17 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../Button';
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { Link, redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Wrapper, Container, 
-  Box, InputGroup, Input, Label, 
+  Box, InputGroup, Input, Label, ShowModal,
   UseForm, Forgot, BoxButton, RegisterLabel, Anchor } from './styles';
 import { ISignIn } from '../../../dtos/user';
+import { ModalPassword } from '../ModalPassword';
 
 export const Form: React.FC = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<ISignIn>();
-  const onSubmit: SubmitHandler<ISignIn> = async (data) => {
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false)
+  const [opacity, setOpacity] = useState(0)
+  const [email, setEmail] = useState<string>('');
+
+  const toggleModal = () => {
+    setOpacity(0);
+    setIsOpen(!isOpen);
+  }
+
+  const afterOpen = () => {
+    setTimeout(() => {
+      setOpacity(1);
+    }, 100)
+  }
+
+  const beforeClose = () => {
+    return new Promise((resolve) => {
+      setOpacity(0);
+      setTimeout(resolve, 300);
+    });
+  }
+
+  const onChange = (e: any) => {
+    const { value } = e.target;
+    setEmail(value)
+  }
+
+
+
+  const onSubmit: SubmitHandler<ISignIn> = (data) => {
     console.log(data);
-    return redirect('/dashboard'); 
+    navigate('/dashboard'); 
   }
 
   return (
@@ -23,8 +54,9 @@ export const Form: React.FC = () => {
           <UseForm onSubmit={handleSubmit(onSubmit)}>
             <InputGroup>
               <Label>Email ou Número de telefone
-                {errors.email && <span> - Email is required</span>}</Label>
+                {errors.email && <span> - Preencha o campo</span>}</Label>
               <Input 
+              
                 type={'email'} 
                 placeholder={''}
                 {...register("email", { required: true})} 
@@ -32,7 +64,7 @@ export const Form: React.FC = () => {
             </InputGroup>
             <InputGroup>
               <Label>
-                Senha {errors.password && <span> - Password is required</span>}
+                Senha {errors.password && <span> - Preencha o campo</span>}
               </Label>
               <Input 
                 type={'password'} 
@@ -42,9 +74,9 @@ export const Form: React.FC = () => {
               />
             </InputGroup>
             <Forgot>
-              <Anchor to={'/forgot'}>
+              <ShowModal onClick={toggleModal}>
                 Esqueceu sua senha?
-              </Anchor>
+              </ShowModal>
             </Forgot>
             <BoxButton>
               <Button type={'submit'} />
@@ -56,6 +88,16 @@ export const Form: React.FC = () => {
             
           </UseForm>
         </Box>
+
+        <ModalPassword 
+          isOpen= {isOpen}
+          afterOpen={afterOpen}
+          beforeClose={beforeClose}
+          onBackgroundClick={toggleModal}
+          email={email}
+          onEscapeKeydown={toggleModal}
+          backgroundProps={ {opacity} }
+        />
       </Container> 
 
     </Wrapper>

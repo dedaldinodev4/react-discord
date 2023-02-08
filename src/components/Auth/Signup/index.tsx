@@ -1,18 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Container, Wrapper, Box, UseForm, InputGroup, Label, 
   Forgot, RegisterLabel,
   Input, BoxButton } from '../Form/styles';
 import { Button } from '../Button';
-import { Anchor, FormInput } from './styles';
+import { Anchor } from './styles';
 import { ISignUp } from '../../../dtos/user';
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 export const SignUp: React.FC = () => {
   
   const { register, handleSubmit, formState: { errors } } = useForm<ISignUp>()
-
-  const onSubmit: SubmitHandler<ISignUp> = data => console.log(data)
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<ISignUp> = data => {  
+    console.log(data)
+    navigate('/dashboard');
+  }
 
   return (
     
@@ -22,7 +25,10 @@ export const SignUp: React.FC = () => {
           <h2>Criar uma conta</h2>
           <UseForm onSubmit={handleSubmit(onSubmit)}>
             <InputGroup>
-              <Label>Email {errors.email && <span> - Email is required. </span>}</Label>
+              <Label>
+                Email 
+                {errors.email && <span> - Preencha o campo Email. </span>}
+              </Label>
               <Input 
                 type={'email'} 
                 placeholder={''} 
@@ -30,7 +36,10 @@ export const SignUp: React.FC = () => {
               />
             </InputGroup>
             <InputGroup>
-              <Label>Nome de Usuário {errors.email && <span> - Username is required. </span>}</Label>
+              <Label>
+                Nome de Usuário 
+                {errors.email && <span> - Preencha o campo Nome de Usuário. </span>}
+              </Label>
               <Input 
                 type={'text'} 
                 placeholder={''}
@@ -38,7 +47,10 @@ export const SignUp: React.FC = () => {
               />
             </InputGroup>
             <InputGroup>
-              <Label>Senha {errors.email && <span> - Password is required. </span>}</Label>
+              <Label>
+                Senha 
+                {errors.email && <span> - Preencha o campo Senha. </span>}
+              </Label>
               <Input 
                 type={'password'} 
                 placeholder={''} 
@@ -46,7 +58,10 @@ export const SignUp: React.FC = () => {
               />
             </InputGroup>
             <InputGroup>
-              <Label>Data de Nascimento {errors.email && <span> - dateOfBrith is required. </span>}</Label>
+              <Label>
+                Data de Nascimento 
+                {errors.email && <span> - Preencha o campo data de nascimento. </span>}
+                </Label>
               <Input 
                 type={'date'} 
                 {...register('dateOfBrith', { required: true})}
