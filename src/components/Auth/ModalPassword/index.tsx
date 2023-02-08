@@ -1,12 +1,13 @@
 import React from 'react';
 import { ModalProps } from 'styled-react-modal'
-import { ModalBody, ModalContainer, ModalFooter, ModalHeader } from './styles';
+import { ModalBody, ModalButton, ModalContainer, ModalFooter, ModalHeader } from './styles';
 
 interface IModal extends ModalProps {
   email: string;
+  closed?:((event: React.MouseEvent<HTMLButtonElement>) => void) | undefined;
 }
 export const ModalPassword: React.FC<IModal> = ({
-  isOpen, afterOpen, afterClose, onBackgroundClick,
+  isOpen, afterOpen, afterClose, onBackgroundClick, closed,
   onEscapeKeydown, backgroundProps, beforeClose, email
 }) => {
   return (
@@ -29,7 +30,7 @@ export const ModalPassword: React.FC<IModal> = ({
         </p>
       </ModalBody>
       <ModalFooter>
-        <button>Ok</button>
+        <ModalButton onClick={closed}>Ok</ModalButton>
       </ModalFooter>
       
     </ModalContainer>

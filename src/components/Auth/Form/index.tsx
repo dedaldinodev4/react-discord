@@ -13,7 +13,7 @@ export const Form: React.FC = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false)
   const [opacity, setOpacity] = useState(0)
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>('dedaldinodv4@gmail.com');
 
   const toggleModal = () => {
     setOpacity(0);
@@ -97,6 +97,7 @@ export const Form: React.FC = () => {
           email={email}
           onEscapeKeydown={toggleModal}
           backgroundProps={ {opacity} }
+          closed={toggleModal}
         />
       </Container> 
 

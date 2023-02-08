@@ -31,6 +31,7 @@ export const Box = styled.div`
   p {
     margin: 10px 0;
     text-align: center;
+    font-size: 14px;
   }
 `;
 
