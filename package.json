@@ -18,6 +18,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.42.1",
+    "react-lottie": "^1.2.3",
     "react-router-dom": "^6.8.0",
     "styled-components": "^5.3.6",
     "styled-react-modal": "^3.0.1",
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
+    "@types/react-lottie": "^1.2.6",
     "@types/styled-components": "^5.1.26",
     "@types/styled-react-modal": "^1.2.2",
     "@vitejs/plugin-react": "^3.0.0",

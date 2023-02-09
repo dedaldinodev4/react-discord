@@ -1,27 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
-import { Container, Wrapper, Box, UseForm, InputGroup, Label, 
-  Forgot, RegisterLabel,
-  Input, BoxButton } from '../Form/styles';
+
+import { Container, Wrapper, 
+  Box, UseForm, InputGroup, Label, RegisterLabel,
+  Input, BoxButton 
+} from '../Form/styles';
 import { Button } from '../Button';
 import { Anchor } from './styles';
 import { ISignUp } from '../../../dtos/user';
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { Loader } from '../../partials/Loader';
 
 export const SignUp: React.FC = () => {
   
   const { register, handleSubmit, formState: { errors } } = useForm<ISignUp>()
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
+
+  const showLoading = () => {
+    setLoading(true)    
+  } 
+
   const onSubmit: SubmitHandler<ISignUp> = data => {  
-    console.log(data)
-    navigate('/dashboard');
+    console.log(data);
+    showLoading()
+    setTimeout(() => {
+      navigate('/dashboard'); 
+    }, 4000)
   }
 
   return (
     
       <Wrapper>
       <Container>
-        <Box>
+        {!loading && <Box>
           <h2>Criar uma conta</h2>
           <UseForm onSubmit={handleSubmit(onSubmit)}>
             <InputGroup>
@@ -80,6 +92,8 @@ export const SignUp: React.FC = () => {
             
           </UseForm>
         </Box>
+        }
+        {loading && <Loader />}
       </Container> 
 
     </Wrapper>
